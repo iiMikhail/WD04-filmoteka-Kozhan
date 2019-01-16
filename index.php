@@ -35,9 +35,9 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 			.mysqli_real_escape_string($link, $_POST['year']) . "'
 			) ";
 			if( mysqli_query($link, $query) ) {
-				// echo "<p>Пользователь добавлен в БД</p>";
+				echo "<p>Фильм добавлен в БД</p>";
 			} else {
-				// echo "<p>Пользователь не добавлен. Проверьте введенные данные</p>";
+				echo "<p>Фильм не добавлен. Проверьте введенные данные</p>";
 			}
 	}
 }
@@ -57,28 +57,35 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 						$film[] = $row;
 					}
 				}
+				?>
+				<div class="row">
+				<?php
 				foreach ($film as $key => $value) {
 				?>			
-					<div class="card mb-20 flex-card">
+					<div class="card mb-20 col-md-3">
 						<h4 class="title-4"><?php echo $film[$key]['name'] ?></h4>
 						<div class="badge"><?php echo $film[$key]['type'] ?></div>
 						<div class="badge"><?php echo $film[$key]['year'] ?></div>
+						<!-- <a class="button-delete" href="?action=delete&id=5">X</a> -->
 					</div>
 				
 				<?php  
 				}
 			?>
+				</div>
 		<div class="panel-holder mt-80 mb-40">
 			<div class="title-3 mt-0">Добавить фильм</div>
 			<form action="index.php" method="POST">
 				<div id="error" class="notify notify--error mb-20">Название фильма не может быть пустым.</div>
+				<div id="error" class="notify notify--error err-type mb-20">Жанр не может быть пустым.</div>
+				<div id="error" class="notify notify--error err-year mb-20">Год не может быть пустым.</div>
 				<div class="form-group"><label class="label">Название фильма<input class="input film-name" name="title" type="text" placeholder="Такси 2" /></label></div>
 				<div class="row">
 					<div class="col">
-						<div class="form-group"><label class="label">Жанр<input class="input" name="genre" type="text" placeholder="комедия" /></label></div>
+						<div class="form-group"><label class="label">Жанр<input class="input film-type" name="genre" type="text" placeholder="комедия" /></label></div>
 					</div>
 					<div class="col">
-						<div class="form-group"><label class="label">Год<input class="input" name="year" type="text" placeholder="2000" /></label></div>
+						<div class="form-group"><label class="label">Год<input class="input  film-year" name="year" type="text" placeholder="2000" /></label></div>
 					</div>
 				</div><input class="button" type="submit" name="newFilm" value="Добавить" />
 			</form>
@@ -88,6 +95,8 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 	<!-- build:jsVendor js/vendor.js -->
 	<script>
 		$('#error').hide();
+		$('.err-type').hide();
+		$('.err-year').hide();
 		var film = (function(){
 		    var init = function(){
 		        _setUpListeners();
@@ -100,11 +109,23 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 		        });
 		    }
 		    var validate = function(event) {
-		        if( $('.film-name').val().trim() == '' ) {
-		            event.preventDefault();
-		            $('#error').show();
-		            console.log("validate");
-		        }
+		        if( ( $('.film-name').val().trim() == '' ) ) {
+		        	event.preventDefault();
+		        	$('#error').show();
+		        } else if ( $('.film-type').val().trim() == '' ) {
+		        	event.preventDefault();
+		        	$('#error').hide();
+		        	$('.err-type').show();
+		        }  else if ( $('.film-year').val().trim() == '' ) {
+		        		event.preventDefault();
+				        $('#error').hide();
+				        $('.err-type').hide();
+				        $('.err-year').show();
+		        	}	else {
+							$('#error').hide();
+							$('.err-type').hide();
+							$('.err-year').hide();
+		        	}
 		    }
 		    return {
 		        init

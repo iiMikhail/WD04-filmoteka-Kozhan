@@ -7,7 +7,6 @@ var film = (function(){
     var _setUpListeners = function() {
         $('.newFilm').on('click', function(event) {
             validate(event);
-            event.preventDefault();
         });
     }
     var validate = function(event) {
