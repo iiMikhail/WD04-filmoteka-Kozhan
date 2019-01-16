@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8" />
-	<title>[Имя и фамилия] - Фильмотека</title>
+	<title>Михаил Кожан - Фильмотека</title>
 	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"/><![endif]-->
 	<meta name="keywords" content="" />
 	<meta name="description" content="" /><!-- build:cssVendor css/vendor.css -->
@@ -71,7 +71,7 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 		<div class="panel-holder mt-80 mb-40">
 			<div class="title-3 mt-0">Добавить фильм</div>
 			<form action="index.php" method="POST">
-				<div id="error" class="notify notify--error mb-20">Название фильма не может быть пустым.</div>
+				<!-- <div id="error" class="notify notify--error mb-20">Название фильма не может быть пустым.</div> -->
 				<div class="form-group"><label class="label">Название фильма<input class="input" name="title" type="text" placeholder="Такси 2" /></label></div>
 				<div class="row">
 					<div class="col">
@@ -87,10 +87,6 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 	<script src="libs/jquery/jquery.js"></script><!-- endbuild -->
 	<!-- build:jsVendor js/vendor.js -->
 	<script src="libs/jquery-custom-scrollbar/jquery.custom-scrollbar.js"></script>
-	<!-- build:jsMain js/main.js -->
-	<script src="js/main.js"></script><!-- endbuild -->
-	<script defer="defer" src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
 
 
 </body>
