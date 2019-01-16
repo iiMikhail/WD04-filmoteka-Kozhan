@@ -35,9 +35,9 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 			.mysqli_real_escape_string($link, $_POST['year']) . "'
 			) ";
 			if( mysqli_query($link, $query) ) {
-				echo "<p>Пользователь добавлен в БД</p>";
+				// echo "<p>Пользователь добавлен в БД</p>";
 			} else {
-				echo "<p>Пользователь не добавлен. Проверьте введенные данные</p>";
+				// echo "<p>Пользователь не добавлен. Проверьте введенные данные</p>";
 			}
 	}
 }
@@ -71,8 +71,8 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 		<div class="panel-holder mt-80 mb-40">
 			<div class="title-3 mt-0">Добавить фильм</div>
 			<form action="index.php" method="POST">
-				<!-- <div id="error" class="notify notify--error mb-20">Название фильма не может быть пустым.</div> -->
-				<div class="form-group"><label class="label">Название фильма<input class="input" name="title" type="text" placeholder="Такси 2" /></label></div>
+				<div id="error" class="notify notify--error mb-20">Название фильма не может быть пустым.</div>
+				<div class="form-group"><label class="label">Название фильма<input class="input film-name" name="title" type="text" placeholder="Такси 2" /></label></div>
 				<div class="row">
 					<div class="col">
 						<div class="form-group"><label class="label">Жанр<input class="input" name="genre" type="text" placeholder="комедия" /></label></div>
@@ -86,6 +86,32 @@ if ( array_key_exists( 'newFilm', $_POST ) ) {
 	</div><!-- build:jsLibs js/libs.js -->
 	<script src="libs/jquery/jquery.js"></script><!-- endbuild -->
 	<!-- build:jsVendor js/vendor.js -->
+	<script>
+		$('#error').hide();
+		var film = (function(){
+		    var init = function(){
+		        _setUpListeners();
+		        console.log("init");
+		    }
+		    var _setUpListeners = function() {
+		        $('.button').on('click', function(event) {
+		            validate(event);
+		            console.log("_setUpListeners");
+		        });
+		    }
+		    var validate = function(event) {
+		        if( $('.film-name').val().trim() == '' ) {
+		            event.preventDefault();
+		            $('#error').show();
+		            console.log("validate");
+		        }
+		    }
+		    return {
+		        init
+		    }
+		}());
+		film.init();
+	</script>
 	<script src="libs/jquery-custom-scrollbar/jquery.custom-scrollbar.js"></script>
 
 

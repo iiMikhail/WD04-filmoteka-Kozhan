@@ -5,12 +5,13 @@ var film = (function(){
         _setUpListeners();
     }
     var _setUpListeners = function() {
-        $('newFilm').on('click', function(event) {
+        $('.newFilm').on('click', function(event) {
             validate(event);
+            event.preventDefault();
         });
     }
     var validate = function(event) {
-        if( $('title').val().trim() == '' ) {
+        if( $('film-name').val().trim() == '' ) {
             event.preventDefault();
             $('#error').show();
         }
