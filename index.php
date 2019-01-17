@@ -98,13 +98,13 @@ if ( @$_GET['action'] == 'delete' ) {
 				<div id="error" class="notify notify--error mb-20">Название фильма не может быть пустым.</div>
 				<div id="error" class="notify notify--error err-type mb-20">Жанр не может быть пустым.</div>
 				<div id="error" class="notify notify--error err-year mb-20">Год не может быть пустым.</div>
-				<div class="form-group"><label class="label">Название фильма<input class="input film-name" name="title" type="text" placeholder="Такси 2" /></label></div>
+				<div class="form-group"><label class="label">Название фильма<input class="input film-name film-title" name="title" type="text" placeholder="Например - Мстители" /></label></div>
 				<div class="row">
 					<div class="col">
-						<div class="form-group"><label class="label">Жанр<input class="input film-type" name="genre" type="text" placeholder="комедия" /></label></div>
+						<div class="form-group"><label class="label">Жанр<input class="input film-type" name="genre" type="text" placeholder="Например - Комедия" /></label></div>
 					</div>
 					<div class="col">
-						<div class="form-group"><label class="label">Год<input class="input  film-year" name="year" type="text" placeholder="2000" /></label></div>
+						<div class="form-group"><label class="label">Год<input class="input  film-year" name="year" type="text" placeholder="Например - 2000" /></label></div>
 					</div>
 				</div><input class="button" type="submit" name="newFilm" value="Добавить" />
 			</form>
@@ -128,7 +128,7 @@ if ( @$_GET['action'] == 'delete' ) {
 		        });
 		    }
 		    var validate = function(event) {
-		        if( ( $('.film-name').val().trim() == '' ) ) {
+		        if( ( $('.film-title').val().trim() == '' ) ) {
 		        	event.preventDefault();
 		        	$('#error').show();
 		        } else if ( $('.film-type').val().trim() == '' ) {
