@@ -64,6 +64,11 @@
 			if( mysqli_affected_rows($link) > 0 ) //возвращает кол-во рядов, которые были затронуты при выполнении последнего запроса 
 			{
 				$resultInfo = "<p>Фильм был удален!</p>";
+				?> 
+				<script>
+					window.open('index.php');
+				</script>
+				<?php
 			} else {
 				$resultError = "<p>Что-то пошло не так</p>";
 			}
