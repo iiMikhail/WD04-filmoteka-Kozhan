@@ -73,10 +73,11 @@ if ( @$_GET['action'] == 'delete' ) {
 						$film[] = $row;
 					}
 				}
-				// print_r($_GET);
 				?>
 				<div class="row">
 				<?php
+				if( COUNT(@$film) > 0 ) {
+
 				foreach ($film as $key => $value) {
 				?>			
 					<div class="card mb-20 col-md-3">
@@ -89,6 +90,9 @@ if ( @$_GET['action'] == 'delete' ) {
 					</div>
 				
 				<?php  
+				}
+				} else {
+					echo "Добавьте первый фильм";
 				}
 			?>
 				</div>
